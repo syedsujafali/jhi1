@@ -1,0 +1,362 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   JHI Services LLC — Design System
+   Light, clean, premium residential HVAC brand
+   ========================================================================== */
+
+@theme {
+  /* Brand palette — 70% light, 20% soft blue/neutral, 10% dark */
+  --color-warm-white: #fafaf7;
+  --color-ivory: #f3f1eb;
+  --color-beige: #eae5da;
+  --color-mist: #dce8ef;
+  --color-sky: #a9c6d8;
+  --color-navy: #233b50;
+  --color-navy-deep: #1b2e3f;
+  --color-charcoal: #30383d;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --shadow-soft: 0 1px 2px rgba(35, 59, 80, 0.04), 0 12px 32px -12px rgba(35, 59, 80, 0.1);
+  --shadow-lift: 0 2px 4px rgba(35, 59, 80, 0.04), 0 28px 60px -24px rgba(35, 59, 80, 0.18);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-warm-white);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-navy);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-sky);
+    color: var(--color-navy);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-navy);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Scroll offset for sticky header */
+  section[id] {
+    scroll-margin-top: 6.5rem;
+  }
+}
+
+@layer components {
+  .container-xl {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-xl {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-xl {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+    opacity: 0.72;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+    flex: none;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3.25rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.4s var(--ease-soft), color 0.4s var(--ease-soft),
+      box-shadow 0.4s var(--ease-soft), transform 0.4s var(--ease-soft),
+      border-color 0.4s var(--ease-soft);
+  }
+
+  .btn-primary {
+    background: var(--color-navy);
+    color: var(--color-warm-white);
+    box-shadow: 0 14px 28px -16px rgba(35, 59, 80, 0.75);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-navy-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 22px 40px -18px rgba(35, 59, 80, 0.6);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-navy);
+    border: 1px solid color-mix(in srgb, var(--color-navy) 24%, transparent);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-warm-white);
+    border-color: var(--color-navy);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-light {
+    background: var(--color-warm-white);
+    color: var(--color-navy);
+    box-shadow: 0 14px 30px -18px rgba(27, 46, 63, 0.55);
+  }
+
+  .btn-light:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px -20px rgba(27, 46, 63, 0.5);
+  }
+
+  .btn-sm {
+    min-height: 2.75rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* Underline link */
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .link-arrow > svg {
+    transition: transform 0.45s var(--ease-soft);
+  }
+
+  .link-arrow:hover > svg {
+    transform: translateX(5px);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-soft);
+    padding-bottom: 2px;
+  }
+
+  .link-arrow:hover .link-underline {
+    background-size: 100% 1px;
+  }
+
+  /* Standalone animated underline (used in footer + data lists) */
+  .a-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.5s var(--ease-soft);
+  }
+
+  .a-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Form fields */
+  .field {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.875rem 1rem;
+    background: #fffdfa;
+    border: 1px solid color-mix(in srgb, var(--color-charcoal) 16%, transparent);
+    border-radius: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--color-charcoal);
+    appearance: none;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  }
+
+  .field::placeholder {
+    color: color-mix(in srgb, var(--color-charcoal) 42%, transparent);
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: var(--color-sky);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-sky) 32%, transparent);
+    background: #fff;
+  }
+
+  /* Selects need their own chevron because appearance is reset */
+  .field-select {
+    padding-right: 2.75rem;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-navy) 50%),
+      linear-gradient(135deg, var(--color-navy) 50%, transparent 50%);
+    background-position: calc(100% - 21px) calc(50% + 1px), calc(100% - 15px) calc(50% + 1px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+  }
+
+  .field-select:focus {
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-navy) 50%),
+      linear-gradient(135deg, var(--color-navy) 50%, transparent 50%);
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-navy) 78%, transparent);
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1s var(--ease-soft), transform 1.1s var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-img {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.3s var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-img.is-visible {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in srgb, var(--color-navy) 9%, transparent) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+
+  .anim-fade-up {
+    animation: fadeUp 1.1s var(--ease-soft) both;
+  }
+
+  .anim-fade {
+    animation: fadeIn 1.4s var(--ease-soft) both;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal-img {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
